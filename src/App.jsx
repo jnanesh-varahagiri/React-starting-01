@@ -1,42 +1,19 @@
-import reactImg from './assets/react-core-concepts.png'
-import componentsImg from './assets/components.png'
+
 import { CORE_CONCEPTS } from './data'
-
-const reactDescriptions = ['Fundamental','Crucial','Core']
-
-function getRandomInt(max){
-  return Math.floor(Math.random() * (max+1))
-}
-
-function Header(){
-  const description = reactDescriptions[getRandomInt(2)]
-  return (
-    <header>
-    <img src={reactImg} alt="Stylized atom" />
-    <h1>React Essentials</h1>
-    <p>
-      {description} React concepts you will need for almost any app you are
-      going to build!
-    </p>
-  </header>
-  )
-}
-
-function CoreConcept({title,description,image}){
-  return (
-    <li>
-      <img src={image} alt="..."></img>
-      <h3>{title}</h3>
-      <p>{description}</p>
-    </li>
-  )
-}
-
-
+import Header from './components/Header/Header'
+import CoreConcept from './components/CoreConcept'
+import TabButton from './components/TabButton/TabButton'
+import { useState } from 'react'
 function App() {
+  const [selectedTopic , setSelectedTopic]= useState('Please Click A Button')
+  function handleSelect(selectedButton){
+    setSelectedTopic(selectedButton)
+    console.log(selectedTopic)
+
+  }
   return (
     <div>
-     <Header></Header>
+     <Header/>
       <main>
         <section id="core-concepts">
           <h2>Core Concepts</h2>
@@ -46,6 +23,17 @@ function App() {
             <CoreConcept {...CORE_CONCEPTS[2]} />
             <CoreConcept {...CORE_CONCEPTS[3]} />
           </ul>
+        </section>
+        <section id="examples">
+          <h2>Examples</h2>
+          <menu>
+            {/* <TabButton>Components</TabButton> */}
+            <TabButton onSelect={()=>handleSelect('Component')}>Components</TabButton>
+            <TabButton onSelect={()=>handleSelect('Jsx')}>JSX</TabButton>
+            <TabButton onSelect={()=>handleSelect('Props')}>Props</TabButton>
+            <TabButton onSelect={()=>handleSelect('State')}>State</TabButton>
+          </menu>
+          {selectedTopic}
         </section>
       </main>
     </div>
