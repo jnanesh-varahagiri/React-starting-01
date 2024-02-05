@@ -1,9 +1,16 @@
-function TabButton({children , onSelect ,isSelected}){
-    console.log(children)
-    
-   return (
-    <li ><button className={ isSelected ? 'active' :''} onClick={()=>onSelect(children)}>{children}</button></li>
-    )
+function TabButton({ children, onSelect, isSelected }) {
+  console.log(children);
+
+  return (
+    <li>
+      <button
+        className={isSelected ? "active" : ""}
+        onClick={() => onSelect(children)}
+      >
+        {children}
+      </button>
+    </li>
+  );
 }
 
 // function TabButton({label}){
@@ -12,4 +19,4 @@ function TabButton({children , onSelect ,isSelected}){
 //     )
 // }
 
-export default TabButton
+export default TabButton;
